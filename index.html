@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Menú · Cafetería 1 (versión compacta)</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Poppins,system-ui,sans-serif;background:#1f4e8c;color:#16263d;padding:14px}
+.wrap{max-width:560px;margin:0 auto;background:#fff;border-radius:20px;overflow:hidden}
+header{background:linear-gradient(135deg,#1f4e8c,#2f6db5);color:#fff;text-align:center;padding:16px}
+header h1{font-size:20px;font-weight:800}
+header p{font-size:12px;opacity:.85}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:4px 14px;padding:12px 14px}
+.cat{break-inside:avoid;margin-bottom:8px}
+.cat h2{font-size:14px;font-weight:800;color:#fff;background:#1f4e8c;border-radius:8px;padding:3px 9px;margin-bottom:4px;display:inline-block}
+.row{display:flex;align-items:baseline;font-size:12.5px;line-height:1.55}
+.row span{white-space:nowrap}
+.row i{flex:1;border-bottom:1px dotted #9fb3cc;margin:0 4px;transform:translateY(-3px)}
+.row b{color:#1f4e8c}
+.note{font-size:10.5px;color:#6b7a90;margin-top:-2px}
+.wide{grid-column:1/-1}
+.wide .list{columns:2;column-gap:14px}
+footer{background:#eaf2fb;text-align:center;font-weight:600;font-size:13px;color:#1f4e8c;padding:10px}
+@media(max-width:360px){.grid{grid-template-columns:1fr}.wide .list{columns:1}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><h1>🏛️ CAFETERÍA 1</h1><p>Universidad Hipócrates</p></header>
+<div class="grid" id="g"></div>
+<footer>🔥 Calentamos tu comida por $12</footer>
+</div>
+<script>
+const M=[
+ ["🥪 Tortas",[["Sencilla",50],["Doble",60],["Doble c/pollo",65],["Pollo",70],["Milanesa",80],["Especial",75]]],
+ ["🍞 Molletes",[["Sencillos",55],["Chorizo",60],["Pollo",65],["Especiales",75]]],
+ ["🌮 Tacos",[["Cecina",70],["Barbacoa",70],["Pastor",70],["Dorados",65]]],
+ ["🥪 Sandwich",[["Doble",60],["C/pollo",65],["Especial",70]]],
+ ["🍳 Chilaquiles",[["Huevo",65],["Pollo",75],["Cecina",80]]],
+ ["🫓 Sopes",[["Pollo",25],["Chorizo",25],["Q. Oaxaca",25],["Tinga",30],["Pastor/cecina",35]]],
+ ["🫔 Enchiladas",[["Verdes",65],["Mole",65],["Suizas",75]]],
+ ["🍗 Pechugas",[["Plancha",80],["Empanizadas",80],["Rellenas",90]]],
+ ["🍔 Más",[["Hot dog",35],["Hot dogs (2)",55],["Hamburguesa",75],["Huevos al gusto",70],["Sincronizadas",65],["Gringas",65],["Burritos",65,"Pastor, cecina o chorizo"],["Combinado",70]],1]
+];
+document.getElementById('g').innerHTML=M.map(([c,p,w])=>
+ `<div class="cat${w?' wide':''}"><h2>${c}</h2><div class="list">${p.map(([n,pr,d])=>
+ `<div class="row"><span>${n}</span><i></i><b>$${pr}</b></div>${d?`<div class="note">${d}</div>`:''}`).join('')}</div></div>`).join('');
+</script>
+</body>
+</html>
